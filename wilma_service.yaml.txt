@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: wilma
+  name: wilma
+spec:
+  type: NodePort
+  ports:
+  - name: "5554"
+    port: 5554
+    nodePort: 30192
+  selector:
+    name: wilma

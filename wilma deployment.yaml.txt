@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: wilma
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: wilma
+    spec:
+      containers:
+      - env:
+        - name: PEP_PASSWORD
+          value: pep_proxy_c5dd510a-6ec3-4eab-b638-8c7ba531e011
+        - name: PEP_PROXY_APP_HOST
+          value: 192.168.100.171
+        - name: PEP_PROXY_APP_ID
+          value: 8b8b38b6-052c-40b7-bea0-07c7ad2d76b2
+        - name: PEP_PROXY_APP_PORT
+          value: "7896"
+        - name: PEP_PROXY_IDM_HOST
+          value: 192.168.100.171
+        - name: PEP_PROXY_IDM_PORT
+          value: "30510"
+        - name: PEP_PROXY_PORT
+          value: "5554"
+        - name: PEP_PROXY_USERNAME
+          value: pep_proxy_51ad73c2-320d-46c5-b418-e61169bbcc4d
+        image: csp2-centos-4:5000/fiware-wilma
+        resources:
+         limits:
+          memory: "500Mi"
+          cpu: "500m"
+         requests:
+          memory: "250Mi"
+          cpu: "250m"
+        imagePullPolicy: IfNotPresent
+        name: wilma
+        ports:
+        - containerPort: 5554
