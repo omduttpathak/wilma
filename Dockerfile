@@ -1,7 +1,7 @@
 ARG NODE_VERSION=10.15.3
 FROM node:${NODE_VERSION}
-ARG GITHUB_ACCOUNT=ging
-ARG GITHUB_REPOSITORY=fiware-pep-proxy
+#ARG GITHUB_ACCOUNT=ging
+#ARG GITHUB_REPOSITORY=fiware-pep-proxy
 ARG DOWNLOAD_TYPE=7.7
 
 # Automated Docker file for Docker Hub
@@ -31,16 +31,16 @@ WORKDIR /
 #RUN if [ ${DOWNLOAD_TYPE} = "latest" ] ; then RELEASE="master"; else RELEASE=$(curl -s https://api.github.com/repos/"${GITHUB_ACCOUNT}"/"${GITHUB_REPOSITORY}"/releases/latest | grep 'tag_name' | cut -d\" -f4); fi && \
 #    if [ ${DOWNLOAD_TYPE} = "latest" ] ; then echo "INFO: Building Latest Development"; else echo "INFO: Building Release: ${RELEASE}"; fi && \
 RUN  	apt-get update && \
-  	apt-get install -y  --no-install-recommends unzip && \
-  	curl https://github.com/"${GITHUB_ACCOUNT}"/"${GITHUB_REPOSITORY}"/archive/"${RELEASE}".zip -L -s -o source.zip  && \
-  	apt-get install wget && \
-	wget https://github.com/ging/fiware-pep-proxy/archive/FIWARE_7.7.zip && \
+  	apt-get install -y  --no-install-recommends unzip git && \
+  	git clone http://fiware-csp-user:password@192.168.100.178/csp_containerizationandautomation/wilma.git  && \
+#  	apt-get install wget && \
+#	wget https://github.com/ging/fiware-pep-proxy/archive/FIWARE_7.7.zip && \
 	#unzip source.zip && \
-	unzip FIWARE_7.7.zip && \
-	rm FIWARE_7.7.zip && \
+#	unzip FIWARE_7.7.zip && \
+#	rm FIWARE_7.7.zip && \
 	#mv "${GITHUB_REPOSITORY}"-"${RELEASE}" /opt/fiware-pep-proxy && \
 	#rm -rf "${GITHUB_REPOSITORY}"-"${RELEASE}" && \
-	mv fiware-pep-proxy-FIWARE_7.7 /opt/fiware-pep-proxy && \
+	mv wilma /opt/fiware-pep-proxy && \
 	apt-get clean && \
 	apt-get remove -y unzip && \
 	apt-get -y autoremove
