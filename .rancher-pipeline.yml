@@ -1,0 +1,23 @@
+stages:
+- name: build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: extras/docker/Dockerfile
+      buildContext: .
+      tag: wilma_img:${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: 192.168.100.176:5000
+    env:
+      PLUGIN_DEBUG: "true"
+      PLUGIN_INSECURE: "true"
+      PLUGIN_STORAGE_PATH: /var/lib/docker2
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+  - applyYamlConfig:
+      path: ./service.yaml
+  - applyYamlConfig:
+      path: ./ingress.yaml
+timeout: 150
+notification: {}
