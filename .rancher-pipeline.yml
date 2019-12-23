@@ -5,7 +5,6 @@ stages:
       dockerfilePath: extras/docker/Dockerfile
       buildContext: .
       tag: wilma_img:${CICD_EXECUTION_SEQUENCE}
-      pushRemote: true
       registry: 192.168.100.176:5000
     env:
       PLUGIN_DEBUG: "true"
