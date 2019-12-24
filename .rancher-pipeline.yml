@@ -2,7 +2,7 @@ stages:
 - name: build
   steps:
   - publishImageConfig:
-      dockerfilePath: extras/docker/Dockerfile
+      dockerfilePath: ./Dockerfile
       buildContext: .
       tag: img_fiware-wilma_v7.7:${CICD_EXECUTION_SEQUENCE}
       registry: 192.168.100.176:5000
