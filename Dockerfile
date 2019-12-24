@@ -31,7 +31,7 @@ FROM node:${NODE_VERSION}
 #RUN if [ ${DOWNLOAD_TYPE} = "latest" ] ; then RELEASE="master"; else RELEASE=$(curl -s https://api.github.com/repos/"${GITHUB_ACCOUNT}"/"${GITHUB_REPOSITORY}"/releases/latest | grep 'tag_name' | cut -d\" -f4); fi && \
 #    if [ ${DOWNLOAD_TYPE} = "latest" ] ; then echo "INFO: Building Latest Development"; else echo "INFO: Building Release: ${RELEASE}"; fi && \
 
-COPY ./* /opt/fiware-pep-proxy
+COPY ./* /opt/fiware-pep-proxy/
 
 WORKDIR /opt/fiware-pep-proxy
 
