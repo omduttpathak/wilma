@@ -11,8 +11,13 @@ stages:
       PLUGIN_INSECURE: "true"
       PLUGIN_STORAGE_PATH: /var/lib/docker2
     when:
-      branch: {}
-      event: {}
+      branch:
+        include:
+        - master
+      event:
+        include:
+        - pull_request
+        - push
 - name: deploy
   steps:
   - applyYamlConfig:
@@ -46,6 +51,7 @@ stages:
         apt-get update
         echo Y | apt-get install npm
         npm -v
+        ls -ltr
         sleep 300
         npm install -g newman
         newman run ./Wilma.postman_collection.json
