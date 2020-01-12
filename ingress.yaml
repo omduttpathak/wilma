@@ -1,6 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  namespace: fiware
   name: wilma-service
   annotations:
     ingress.kubernetes.io/rewrite-target: /
