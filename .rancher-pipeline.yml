@@ -22,8 +22,24 @@ stages:
       event: {}
   - applyYamlConfig:
       path: ./wilma_service.yaml
+    when:
+      branch:
+        include:
+        - master
+      event:
+        include:
+        - pull_request
+        - push
   - applyYamlConfig:
       path: ./ingress.yaml
+    when:
+      branch:
+        include:
+        - master
+      event:
+        include:
+        - pull_request
+        - push
   - runScriptConfig:
       image: python:latest
       shellScript: |-
