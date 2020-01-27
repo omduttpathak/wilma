@@ -5,7 +5,8 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: img_fiware-wilma_v7.7:${CICD_EXECUTION_SEQUENCE}
-      registry: 192.168.100.176:5000
+      #registry: 192.168.100.176:5000
+      registry: 172.30.76.49:5000
     env:
       PLUGIN_DEBUG: "true"
       PLUGIN_INSECURE: "true"
