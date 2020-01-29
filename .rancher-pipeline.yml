@@ -5,15 +5,19 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: img_fiware-wilma_v7.7:${CICD_EXECUTION_SEQUENCE}
-      #registry: 192.168.100.176:5000
       registry: 172.30.76.49:5000
     env:
       PLUGIN_DEBUG: "true"
       PLUGIN_INSECURE: "true"
       PLUGIN_STORAGE_PATH: /var/lib/docker2
     when:
-      branch: {}
-      event: {}
+      branch:
+        include:
+        - master
+      event:
+        include:
+        - pull_request
+        - push
 - name: deploy
   steps:
   - applyYamlConfig:
@@ -38,8 +42,13 @@ stages:
         apt-get install sshpass
         sshpass -p password ssh -tt -o StrictHostKeyChecking=no newuser@192.168.100.178 ./check_pod_status.sh p-kpggk-pipeline wilma
     when:
-      branch: {}
-      event: {}
+      branch:
+        include:
+        - master
+      event:
+        include:
+        - pull_request
+        - push
 - name: test
   steps:
   - runScriptConfig:
