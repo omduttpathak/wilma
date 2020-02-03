@@ -1,8 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: test
-  #namespace: fiware
+  #namespace: test
+  namespace: fiware
   name: wilma
 spec:
   replicas: 3
@@ -29,7 +29,8 @@ spec:
           value: "5554"
         - name: PEP_PROXY_USERNAME
           value: pep_proxy_51ad73c2-320d-46c5-b418-e61169bbcc4d
-        image: 172.30.76.49:5000/wilma 
+        #image: 172.30.76.49:5000/wilma
+        image: csp2-centos-1:5000/fiware-wilma
         resources:
          limits:
           memory: "500Mi"
