@@ -11,13 +11,8 @@ stages:
       PLUGIN_INSECURE: "true"
       PLUGIN_STORAGE_PATH: /var/lib/docker2
     when:
-      branch:
-        include:
-        - master
-      event:
-        include:
-        - pull_request
-        - push
+      branch: {}
+      event: {}
 - name: deploy
   steps:
   - applyYamlConfig:
