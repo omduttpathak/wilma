@@ -1,0 +1,956 @@
+{
+	"info": {
+		"_postman_id": "67318aff-9907-42df-a3d1-c04c9511ccb4",
+		"name": "Wilma",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "KeyRock Portal Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "acc26b2a-71bc-4a8f-b9da-12f4772b5f50",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody); \r",
+							"postman.setEnvironmentVariable(\"Token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"admin@test.com\",\n  \"password\": \"1234\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.117:30192/v1/auth/tokens",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"117"
+					],
+					"port": "30192",
+					"path": [
+						"v1",
+						"auth",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gen Sect & ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e667e008-5d8b-4adc-a452-1625845b493b",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody); \r",
+							"postman.setEnvironmentVariable(\"ID\", jsonData.id);\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody); \r",
+							"postman.setEnvironmentVariable(\"Secret\", jsonData.secret);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "{{Token}}"
+					},
+					{
+						"key": "Content-type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://192.168.100.117:30909/v1/applications/{client_id}‘",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"117"
+					],
+					"port": "30909",
+					"path": [
+						"v1",
+						"applications",
+						"{client_id}‘"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Keyrock Id & Pswd for token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "da7e10ff-67c9-4f9c-806e-265de09ca2dc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody); \r",
+							"postman.setEnvironmentVariable(\"Password\", jsonData.id);\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody); \r",
+							"postman.setEnvironmentVariable(\"Password\", jsonData.password);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "{{Token}}"
+					},
+					{
+						"key": "Content-type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://192.168.100.117:30909/v1/applications/{client_id}/iot_agents‘",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"117"
+					],
+					"port": "30909",
+					"path": [
+						"v1",
+						"applications",
+						"{client_id}",
+						"iot_agents‘"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth generation1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e404830c-de0f-415d-9e6d-096adb041f78",
+						"exec": [
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"client_secret\", jsonData.secret);",
+							"",
+							"var jsonData = JSON.parse(responseBody); ",
+							"postman.setEnvironmentVariable(\"Sensor_id\", jsonData.id);",
+							"",
+							"var jsonData = JSON.parse(responseBody); ",
+							"postman.setEnvironmentVariable(\"Sensor_password\", jsonData.password);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "f7daa590-f4af-41cc-890d-94c1209abb02",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "97329be4-e7ce-4f82-8933-d7666f818226",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ZDUxYjA2NTctNjYyOC00M2UxLTgxODMtNjI5ODNjOTZmNjhlOjE5ZjVmZjU1LWRmNmEtNGQyMS1hYTAzLWIzNjMwN2IwNjdmYw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "iot_sensor_283a5124-fbd4-4d61-8a0d-958173cb5507",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "iot_sensor_103113ed-3a96-4af9-996b-ebbf79fa672a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.100.178:30890/oauth2/token",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"178"
+					],
+					"port": "30890",
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth token generation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "24e01b2a-13d1-474b-a924-cc38bd1e7a47",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.135:5554/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"135"
+					],
+					"port": "5554",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authentication failed(incorrect auth token)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a570099-71dc-4955-8c66-a5c2ad79b07e",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.135:5554/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"135"
+					],
+					"port": "5554",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RFID authentication failed(auth token expire)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19ff0d0f-49d0-4825-84a9-d90c2786bd7c",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.135:5554/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"135"
+					],
+					"port": "5554",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RFID authentication failed(port is empty)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f41cbb49-934e-4d77-88d9-f7040f5872b0",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.135:5554/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"135"
+					],
+					"port": "5554",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RFID authentication failed(host name is empty)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c9dde7fe-36e1-4612-8ead-720d0b525cd5",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.135:5554/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"135"
+					],
+					"port": "5554",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RFID authentication failed(API key is not mention)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "192b3a75-f64e-45f2-831a-88185323c22c",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.135:5554/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"135"
+					],
+					"port": "5554",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RFID authentication failed(RFID device id not mention)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "067456ca-2bb6-4472-ba6f-0c27d886bf58",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.135:5554/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"135"
+					],
+					"port": "5554",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RFID authentication failed(chaneged POST to GET)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0099b776-fff9-40b4-b483-6f93bd3da7a6",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.135:5554/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"135"
+					],
+					"port": "5554",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RFID authentication failed(sensor id deleted on keyrock)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "81515587-074c-4988-949c-0a0c19d4f101",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.135:5554/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"135"
+					],
+					"port": "5554",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RFID authentication failed(token not provided on header)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fae5aa5f-9136-4845-9150-cde82b1511e6",
+						"exec": [
+							"pm.environment.set(\"variable_key\", \"variable_value\");",
+							"pm.variables.get(\"variable_key\");",
+							"pm.globals.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "44148331-d244-483b-b2ab-6f2f5b256dea",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "f7daa590-f4af-41cc-890d-94c1209abb02",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "97329be4-e7ce-4f82-8933-d7666f818226",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-token",
+						"value": "092e47ebdb5ab262e35aac9d43de434546b2c9b5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "fiware-service",
+						"value": "fiwareldb"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/registration_raw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"diviceName\": \"FIXED READER\",\n    \"locationType\":\"O\",\n    \"locationTypeId\":\"1\",\n    \"locationName\":\"\",\n    \"locationId\":\"2\",\n    \"deviceType\":\"FR\",\n    \"deviceMacId\":\"CI:7D:FS:7C:3D:25\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.100.176:30180/iot/json?i=fixeddevice&k=4jggokgpepnvsb2uv4s40d59oa",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"100",
+						"176"
+					],
+					"port": "30180",
+					"path": [
+						"iot",
+						"json"
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "fixeddevice"
+						},
+						{
+							"key": "k",
+							"value": "4jggokgpepnvsb2uv4s40d59oa"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
