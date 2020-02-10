@@ -30,7 +30,7 @@ spec:
         - name: PEP_PROXY_USERNAME
           value: pep_proxy_51ad73c2-320d-46c5-b418-e61169bbcc4d
         #image: 172.30.76.49:5000/wilma
-        image: csp2-centos-4:5000/IMG_fiware-wilma_v7.7:${CICD_EXECUTION_SEQUENCE}
+        image: csp2-centos-1:5000/fiware-wilma_v7.7:${CICD_EXECUTION_SEQUENCE}
         resources:
          limits:
           memory: "500Mi"
